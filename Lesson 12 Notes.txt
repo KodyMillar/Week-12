@@ -1,0 +1,133 @@
+Web Tech Lesson 12 Notes
+
+
+Event handling - key to javascript interactivity
+
+Event handler - code that runs in response to event
+Event listeners - listens for the event happening
+
+Everything that happens in the browser is an event
+	> Can monitor any of those events by adding an event listener
+	> Event listeners can be appended to any element in the window and DOM
+	> Can trigger any function by using anonymous function or callback
+		>  If callback, can grab that event function
+
+Find an element to listen for
+	> When event occurs, call callback function
+	> function performs change
+
+const mousePosition = (event) => {
+  posX.innerText = event.pageX;
+  poxY.innerText = event.pageY;
+};
+	> grab pageX and pageY properties and put into innertext of PosX and PosY
+
+container.addEventListener(
+	"mouseenter",
+	() => {
+		container.classList.add("blue");
+	}
+	false
+};
+	> change color of box when mouse enters
+
+container - everything happening in container
+window - everything happening in the browser window
+
+
+Can be a single element, a set of elements, the HTML document loaded in the current tab, 
+or the entire browser window
+
+addEventListener() - add an event
+	"click" - when click event
+	"keydown"
+
+addEventListener('click', handler)
+
+const btn = document.querySelector("button");
+btn.addEventListener("click", changeBackground);
+
+mouseover and mouseout — The color changes when the mouse pointer hovers over the button, or when the pointer 
+moves off the button, respectively.
+
+controller.abort() - removes event handler
+
+objects have property On followed by name of event
+	> ex. onclick
+
+inline: 
+
+HTML Event handler: <button onclick="bgChange()">Press me</button>
+> 
+	> You should never use the HTML event handler attributes
+	> Don't mix HTML and Javascript
+
+Inside script element:
+<button onclick="alert('Hello, this is my old-fashioned event handler!');">
+  Press me
+</button>
+	> Inefficient but better
+
+const buttons = document.querySelectorAll("button");
+
+
+In javascript:
+
+for (const button of buttons) {
+  button.addEventListener("click", bgChange);
+}
+
+
+
+Event objects:
+
+event, evt, or e are used to reference the element the event occured on
+
+some event objects add property relavent to particular event
+	> ex. keydown
+	> keyboardEvent
+
+Event Bubbling - how a browser handles events
+	
+parent element - adding an event handler to the parent when the function performs on the child will
+trigger the event handler to handle the parent element
+
+
+Preventing submitting the wrong data:
+	> call submit
+	> e.preventDefault()
+		- If the event is not explicitly handled, action should not be taken normally
+		- has the prevent default
+
+
+----------------------------------------------
+ 
+event bubbles up from the innermost element
+for the event handler code:
+
+document.body.addEventListener("click", handleClick);
+container.addEventListener("click", handleClick);
+button.addEventListener("click", handleClick);
+
+	the click on the button fires first
+	followed by the click on its parent (the <div> element)
+	followed by the <div> element's parent (the <body> element).
+
+
+Having child and parent with event handlers handles both at same time - creates problem
+	> stopPropogation - prevents event bubbling
+	> stopImmediatePropogation() - get rid of other click listeners on same object
+	> d.addEventListener('click', (ev)=>{
+		ev.stopImmediatePropogation();
+		log('Hi I/'m a DIV');
+});
+
+To reverse event bubbling, use event capture
+	> ex. document.body.addEventListener("click", handleClick, { capture: true });
+
+Event delegation - better to set event handler to parent for all children element
+	> uses event bubble
+
+setTimeout(function, 2000) will reset the event after 2 seconds
+
+ 
