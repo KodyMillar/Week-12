@@ -4,4 +4,4 @@ function alertUser() {
     alert("You Clicked!!!");
 }
 
-buttonRef.addEventListener("click", alertUser)
+buttonRef.addEventListener("click", alertUser, {once: true})
