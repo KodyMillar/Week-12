@@ -25,7 +25,7 @@ function changeText(){
 buttonRef.addEventListener("click", changeText)
 
 function updateImage() {
-    const image = document.querySelector = document.querySelector("#ShoppingCart")
+    const image = document.querySelector("#ShoppingCart")
     image.setAttribute(
         "src",
         "Images/GroceryCart.png"
@@ -36,13 +36,32 @@ function updateImage() {
 }
 updateImage();
 
-const buttonContainer = document.querySelector(".button-container");
+function addButton() {
+    document.createElement("button")
+}
 
+buttonRef.addEventListener("click", addButton)
+
+
+//1. find the element
+const buttonContainer = document.querySelector(".button-container");
+//2. define a function to respond to the event
 function changeBGGreen(event)
 {
     console.log(event.target)
     // event.target.style.backgroundColor = "green"
-    event.target.classList.add("greenBG")
+    if (event.target.tagName === "BUTTON")
+        event.target.classList.add("greenBG")
 }
 
+//3. Use add event listener
 buttonContainer.addEventListener("click", changeBGGreen)
+
+function changeTextColor(event)
+{
+    // if t
+    textcontent = event.target.textContent
+    if (textcontent === "red")
+        event.target.style.color = "red"
+}
+buttonContainer.addEventListener("click", changeTextColor);
