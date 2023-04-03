@@ -1,5 +1,13 @@
 let buttonRef = document.querySelector("#clickMe")
 
+function addNewButtonAndpara(){
+    const newButton = document.createElement("Button");
+    newButton.textContent = "Purple"
+    buttonContainer.appendChild(newButton)
+    newButton.addEventListener("click", changeTextColor)
+}
+buttonRef.addEventListener("click", addNewButtonAndpara)
+
 function alertUser() {
     alert("You Clicked!!!");
 }
@@ -61,7 +69,13 @@ function changeTextColor(event)
 {
     // if t
     textcontent = event.target.textContent
-    if (textcontent === "red")
+    if (textcontent === "red"){
         event.target.style.color = "red"
+    }
+    else if (textcontent === "Purple"){
+        event.target.style.color = "purple"
+    }
+
 }
 buttonContainer.addEventListener("click", changeTextColor);
+
